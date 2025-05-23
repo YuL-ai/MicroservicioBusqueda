@@ -42,7 +42,7 @@ public class BusquedaService {
         return busquedaRepository.findByDireccion(direccion);
     }
     
-    public BusquedaModelo findByCorreo(String correo) {
+    public List<BusquedaModelo> findByCorreo(String correo) {
         return busquedaRepository.findByCorreo(correo);
     }
 }
