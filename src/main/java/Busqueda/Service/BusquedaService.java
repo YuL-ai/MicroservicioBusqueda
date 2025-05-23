@@ -1,6 +1,48 @@
 package Busqueda.Service;
 
-public class BusquedaService {
-    
+import java.sql.Date;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import Busqueda.Busqueda.Modelo.BusquedaModelo;
+import Busqueda.Busqueda.Repository.BusquedaRepository;
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
+
+public class BusquedaService {
+    @Autowired
+    private BusquedaRepository busquedaRepository;
+
+    public List<BusquedaModelo> findAll() {
+        return busquedaRepository.findAll();
+    }
+
+    public List<BusquedaModelo> findByNombre(String nombre) {
+        return busquedaRepository.findByNombre(nombre);
+    }
+
+    public List<BusquedaModelo> findByNombreAndApaterno(String nombre, String apaterno) {
+        return busquedaRepository.findByNombreAndApaterno(nombre, apaterno);
+    }
+    public List<BusquedaModelo> findByNombreAndApaternoAndAmaterno(String nombre, String apaterno, String amaterno) {
+        return busquedaRepository.findByNombreAndApaternoAndAmaterno(nombre, apaterno, amaterno);
+    }
+    
+    public List<BusquedaModelo> findByTarifa(int tarifa) {
+        return busquedaRepository.findByTarifa(tarifa);
+    }
+    public List<BusquedaModelo> findByFechaNacimiento(Date fechNacimiento) {
+        return busquedaRepository.findByFechaNacimiento(fechNacimiento);
+    }
+    public List<BusquedaModelo> findByDireccion(String direccion) {
+        return busquedaRepository.findByDireccion(direccion);
+    }
+    
+    public BusquedaModelo findByCorreo(String correo) {
+        return busquedaRepository.findByCorreo(correo);
+    }
 }
