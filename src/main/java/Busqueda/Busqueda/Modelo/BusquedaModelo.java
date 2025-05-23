@@ -1,6 +1,11 @@
 package Busqueda.Busqueda.Modelo;
 import java.util.Date;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -9,31 +14,36 @@ import java.util.Date;
 
 public class BusquedaModelo {
     @Id
-    @Column(unique = true, nullable = false, lenght = 13)
+    @Column(unique = true, nullable = false, length = 13)
     private String rut;
 
-    @Column (nullabel = false)
+    @Column (nullable = false)
     private String nombre;
 
-    @Column (nullabel = false)
+    @Column (nullable = false)
     private String apaterno;
 
-    @Column (nullabel = false)
+    @Column (nullable = false)
     private String amaterno;
 
-    @Column (unique = true, nullabel = false)
+    @Column (unique = true, nullable  = false)
     private String correo;
 
-    @Column (nullabel = false)
+    @Column (nullable = false)
     private String direccion;
 
-    @Column (unique = true, nullabel = false, lenght = 9)
+    @Column (unique = true, nullable = false, length = 9)
     private int telefono;
 
-    @Column (nullabel = false)
-    private Date fechNacimiento;
+    @Column (nullable = false)
+    private Date fechaNacimiento;
 
-    @Column (nullabel = false)
+    @Column (nullable = false)
     private int tarifa;
+
+    @Column (nullable = false)
+    private String rating;
+
+    
 
 }

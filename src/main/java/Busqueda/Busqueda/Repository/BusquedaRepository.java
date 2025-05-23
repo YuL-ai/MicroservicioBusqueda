@@ -5,20 +5,19 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import Busqueda.Busqueda.Modelo.BusquedaModelo;
-
+@Repository
 public interface BusquedaRepository extends JpaRepository<BusquedaModelo, String> {
 
     List<BusquedaModelo> findByNombre(String nombre);
 
     List<BusquedaModelo> findByCorreo(String correo);
 
-    List<BusquedaModelo> findByNombreAndApaterno (String nombre, String apaterno);
-
     List<BusquedaModelo> findByTarifa(int tarifa);
 
-    List<BusquedaModelo> findByFechaNacimiento (Date fechNacimiento);
+    List<BusquedaModelo> findByFechaNacimiento (Date fechaNacimiento);
 
     List<BusquedaModelo> findByDireccion (String direccion);
 

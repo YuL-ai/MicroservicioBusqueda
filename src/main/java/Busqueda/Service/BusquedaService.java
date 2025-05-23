@@ -12,7 +12,6 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-
 public class BusquedaService {
     @Autowired
     private BusquedaRepository busquedaRepository;
@@ -25,9 +24,7 @@ public class BusquedaService {
         return busquedaRepository.findByNombre(nombre);
     }
 
-    public List<BusquedaModelo> findByNombreAndApaterno(String nombre, String apaterno) {
-        return busquedaRepository.findByNombreAndApaterno(nombre, apaterno);
-    }
+   
     public List<BusquedaModelo> findByNombreAndApaternoAndAmaterno(String nombre, String apaterno, String amaterno) {
         return busquedaRepository.findByNombreAndApaternoAndAmaterno(nombre, apaterno, amaterno);
     }
