@@ -52,4 +52,7 @@ public class BusquedaService {
     public void delete(String rut) {
         busquedaRepository.deleteById(rut);
     }
+    public BusquedaModelo save(BusquedaModelo busquedaModelo) {
+        return busquedaRepository.save(busquedaModelo);
+    }
 }
