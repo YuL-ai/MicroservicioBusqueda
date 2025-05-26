@@ -20,11 +20,14 @@ public class BusquedaService {
         return busquedaRepository.findAll();
     }
 
+    public BusquedaModelo findByRut(String rut) {
+        return busquedaRepository.findById(rut).get();
+    }
+    
     public List<BusquedaModelo> findByNombre(String nombre) {
         return busquedaRepository.findByNombre(nombre);
     }
 
-   
     public List<BusquedaModelo> findByNombreAndApaternoAndAmaterno(String nombre, String apaterno, String amaterno) {
         return busquedaRepository.findByNombreAndApaternoAndAmaterno(nombre, apaterno, amaterno);
     }
@@ -42,4 +45,9 @@ public class BusquedaService {
     public List<BusquedaModelo> findByCorreo(String correo) {
         return busquedaRepository.findByCorreo(correo);
     }
+
+    public List<BusquedaModelo> findByRating(String rating) {
+        return busquedaRepository.finByrating(rating);
+    }
+
 }
