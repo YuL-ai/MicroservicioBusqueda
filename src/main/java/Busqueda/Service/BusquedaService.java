@@ -23,7 +23,7 @@ public class BusquedaService {
     public BusquedaModelo findByRut(String rut) {
         return busquedaRepository.findById(rut).get();
     }
-    
+
     public List<BusquedaModelo> findByNombre(String nombre) {
         return busquedaRepository.findByNombre(nombre);
     }
@@ -49,5 +49,7 @@ public class BusquedaService {
     public List<BusquedaModelo> findByRating(String rating) {
         return busquedaRepository.finByrating(rating);
     }
-
+    public void delete(String rut) {
+        busquedaRepository.deleteById(rut);
+    }
 }

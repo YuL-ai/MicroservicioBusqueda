@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,10 +21,6 @@ public class BusquedaController {
     @Autowired
     private BusquedaService busquedaService;
 
-
-
-
-    
     @GetMapping
    public List<BusquedaModelo> findAll() {
        return busquedaService.findAll();
@@ -52,7 +49,7 @@ public class BusquedaController {
     @PutMapping("/rut")
     public ResponseEntity<BusquedaModelo> updateBusqueda(@PathVariable String rut, @RequestBody BusquedaModelo busquedaModelo) {
         try {
-            BusquedaModelo newBusqueda = BusquedaService.findById(rut);
+            BusquedaModelo newBusqueda = busquedaService.findByRut(rut);
             newBusqueda.setNombre(busquedaModelo.getNombre());
             newBusqueda.setApaterno(busquedaModelo.getApaterno());
             newBusqueda.setAmaterno(busquedaModelo.getAmaterno());
@@ -65,8 +62,16 @@ public class BusquedaController {
             return ResponseEntity.ok(busquedaModelo);
               
         } catch (Exception e) {
-            // TODO: handle exception
+            
+            return ResponseEntity.notFound().build();
         }
+    }
+
+    @DeleteMapping("/{rut}")
+    public ResponseEntity<Void> deleteBusqueda(@PathVariable String rut) {
+        busquedaService.delete(rut);
+        return ResponseEntity.noContent().build();
+           
     }
 
 }
