@@ -1,4 +1,4 @@
-package Busqueda.Controller;
+package Busqueda.Busqueda.Controller;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Busqueda.Busqueda.Modelo.BusquedaModelo;
-import Busqueda.Service.BusquedaService;
+import Busqueda.Busqueda.Service.BusquedaService;
 
 @RestController
 @RequestMapping("/api/v1/busqueda")
@@ -48,7 +48,7 @@ public class BusquedaController {
         return busquedaService.findByRating(rating);
     }
     
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<BusquedaModelo> createBusqueda(@RequestBody BusquedaModelo busquedaModelo) {
         BusquedaModelo newbusqueda = busquedaService.save(busquedaModelo);
         return ResponseEntity.status(HttpStatus.CREATED).body(newbusqueda);

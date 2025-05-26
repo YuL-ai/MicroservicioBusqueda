@@ -1,4 +1,4 @@
-package Busqueda.Service;
+package Busqueda.Busqueda.Service;
 
 import java.sql.Date;
 import java.util.List;
@@ -35,8 +35,8 @@ public class BusquedaService {
     public List<BusquedaModelo> findByTarifa(int tarifa) {
         return busquedaRepository.findByTarifa(tarifa);
     }
-    public List<BusquedaModelo> findByFechaNacimiento(Date fechNacimiento) {
-        return busquedaRepository.findByFechaNacimiento(fechNacimiento);
+    public List<BusquedaModelo> findByFechaNacimiento(Date fechaNacimiento) {
+        return busquedaRepository.findByFechaNacimiento(fechaNacimiento);
     }
     public List<BusquedaModelo> findByDireccion(String direccion) {
         return busquedaRepository.findByDireccion(direccion);
@@ -47,12 +47,12 @@ public class BusquedaService {
     }
 
     public List<BusquedaModelo> findByRating(String rating) {
-        return busquedaRepository.finByrating(rating);
+        return busquedaRepository.findByrating(rating);
     }
     public void delete(String rut) {
         busquedaRepository.deleteById(rut);
     }
-    public BusquedaModelo save(BusquedaModelo busquedaModelo) {
-        return busquedaRepository.save(busquedaModelo);
+    public BusquedaModelo save(BusquedaModelo busqueda) {
+        return busquedaRepository.save(busqueda);
     }
 }

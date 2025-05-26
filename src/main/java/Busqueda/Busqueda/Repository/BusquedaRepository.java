@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import Busqueda.Busqueda.Modelo.BusquedaModelo;
 @Repository
 public interface BusquedaRepository extends JpaRepository<BusquedaModelo, String> {
-
+    
     List<BusquedaModelo> findByNombre(String nombre);
 
     List<BusquedaModelo> findByCorreo(String correo);
@@ -23,6 +23,6 @@ public interface BusquedaRepository extends JpaRepository<BusquedaModelo, String
 
     List<BusquedaModelo> findByNombreAndApaternoAndAmaterno (String nombre, String apaterno, String amaterno);
 
-    List<BusquedaModelo> finByrating (String rating);
-   
+    List<BusquedaModelo> findByrating (String rating);
+
 }
