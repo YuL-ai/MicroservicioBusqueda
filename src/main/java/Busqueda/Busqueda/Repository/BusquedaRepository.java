@@ -24,6 +24,6 @@ public interface BusquedaRepository extends JpaRepository<BusquedaModelo, String
 
     List<BusquedaModelo> findByNombreAndApaternoAndAmaterno (String nombre, String apaterno, String amaterno);
 
-    List<BusquedaModelo> findByrating (String rating);
+    List<BusquedaModelo> findByRating (String rating);
 
 }
