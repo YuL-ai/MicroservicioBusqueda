@@ -38,7 +38,7 @@ public class DataLoader implements CommandLineRunner {
             usuario.setTarifa(faker.number().numberBetween(10000, 50000)); // Tarifa simulada
             usuario.setRating(faker.options().option("Excelente", "Bueno", "Regular", "Malo"));
 
-            busquedaRepositorio.save(usuario);
+            busquedaRepository.save(usuario);
         }
     }
 }
