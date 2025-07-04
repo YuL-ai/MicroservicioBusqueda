@@ -56,4 +56,23 @@ public class BusquedaService {
     public BusquedaModelo save(BusquedaModelo busqueda) {
         return busquedaRepository.save(busqueda);
     }
+
+    public BusquedaModelo update(String rut, BusquedaModelo nuevosDatos) {
+    BusquedaModelo existente = findByRut(rut);  // Reutiliza tu método existente
+    if (existente == null) {
+        throw new RuntimeException("No se encontró el registro con RUT: " + rut);
+    }
+
+    // Actualiza campos necesarios (ejemplo)
+    existente.setNombre(nuevosDatos.getNombre());
+    existente.setApaterno(nuevosDatos.getApaterno());
+    existente.setAmaterno(nuevosDatos.getAmaterno());
+    existente.setTarifa(nuevosDatos.getTarifa());
+    existente.setCorreo(nuevosDatos.getCorreo());
+    existente.setDireccion(nuevosDatos.getDireccion());
+    existente.setFechaNacimiento(nuevosDatos.getFechaNacimiento());
+    existente.setRating(nuevosDatos.getRating());
+
+    return save(existente);  // Guarda el objeto actualizado
+}
 }
