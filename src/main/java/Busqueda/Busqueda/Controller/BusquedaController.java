@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import Busqueda.Busqueda.Modelo.BusquedaModelo;
@@ -20,56 +21,62 @@ import Busqueda.Busqueda.Service.BusquedaService;
 @RestController
 @RequestMapping("/api/v1/busqueda")
 public class BusquedaController {
+
     @Autowired
     private BusquedaService busquedaService;
 
     @GetMapping
-   public List<BusquedaModelo> findAll() {
-       return busquedaService.findAll();
-   }
+    public List<BusquedaModelo> findAll() {
+        return busquedaService.findAll();
+    }
 
     @GetMapping("/nombre-apaterno-amaterno")
-    public List<BusquedaModelo> findByNombreAndApaternoAndAmaterno(String nombre, String apaterno, String amaterno) {
+    public List<BusquedaModelo> findByNombreAndApaternoAndAmaterno(
+            @RequestParam String nombre,
+            @RequestParam String apaterno,
+            @RequestParam String amaterno) {
         return busquedaService.findByNombreAndApaternoAndAmaterno(nombre, apaterno, amaterno);
     }
 
     @GetMapping("/tarifa")
-    public List<BusquedaModelo> findByTarifa(int tarifa) {
+    public List<BusquedaModelo> findByTarifa(@RequestParam int tarifa) {
         return busquedaService.findByTarifa(tarifa);
     }
 
     @GetMapping("/direccion")
-    public List<BusquedaModelo> findByDireccion(String direccion) {
+    public List<BusquedaModelo> findByDireccion(@RequestParam String direccion) {
         return busquedaService.findByDireccion(direccion);
     }
 
     @GetMapping("/rating")
-    public List<BusquedaModelo> findByRating(String rating) {
+    public List<BusquedaModelo> findByRating(@RequestParam String rating) {
         return busquedaService.findByRating(rating);
     }
-    
-    @PostMapping()
+
+    @PostMapping
     public ResponseEntity<BusquedaModelo> createBusqueda(@RequestBody BusquedaModelo busquedaModelo) {
-        BusquedaModelo newbusqueda = busquedaService.save(busquedaModelo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newbusqueda);
+        BusquedaModelo newBusqueda = busquedaService.save(busquedaModelo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newBusqueda);
     }
-    @PutMapping("/rut")
-    public ResponseEntity<BusquedaModelo> updateBusqueda(@PathVariable String rut, @RequestBody BusquedaModelo busquedaModelo) {
+
+    @PutMapping("/{rut}")
+    public ResponseEntity<BusquedaModelo> updateBusqueda(
+            @PathVariable String rut,
+            @RequestBody BusquedaModelo busquedaModelo) {
         try {
-            BusquedaModelo newBusqueda = busquedaService.findByRut(rut);
-            newBusqueda.setNombre(busquedaModelo.getNombre());
-            newBusqueda.setApaterno(busquedaModelo.getApaterno());
-            newBusqueda.setAmaterno(busquedaModelo.getAmaterno());
-            newBusqueda.setCorreo(busquedaModelo.getCorreo());
-            newBusqueda.setDireccion(busquedaModelo.getDireccion());
-            newBusqueda.setTelefono(busquedaModelo.getTelefono());
-            newBusqueda.setFechaNacimiento(busquedaModelo.getFechaNacimiento());
-            newBusqueda.setTarifa(busquedaModelo.getTarifa());
-            newBusqueda.setRating(busquedaModelo.getRating());
-            return ResponseEntity.ok(busquedaModelo);
-              
+            BusquedaModelo existing = busquedaService.findByRut(rut);
+            existing.setNombre(busquedaModelo.getNombre());
+            existing.setApaterno(busquedaModelo.getApaterno());
+            existing.setAmaterno(busquedaModelo.getAmaterno());
+            existing.setCorreo(busquedaModelo.getCorreo());
+            existing.setDireccion(busquedaModelo.getDireccion());
+            existing.setTelefono(busquedaModelo.getTelefono());
+            existing.setFechaNacimiento(busquedaModelo.getFechaNacimiento());
+            existing.setTarifa(busquedaModelo.getTarifa());
+            existing.setRating(busquedaModelo.getRating());
+
+            return ResponseEntity.ok(busquedaService.save(existing));
         } catch (Exception e) {
-            
             return ResponseEntity.notFound().build();
         }
     }
@@ -78,7 +85,6 @@ public class BusquedaController {
     public ResponseEntity<Void> deleteBusqueda(@PathVariable String rut) {
         busquedaService.delete(rut);
         return ResponseEntity.noContent().build();
-           
     }
-
 }
+
