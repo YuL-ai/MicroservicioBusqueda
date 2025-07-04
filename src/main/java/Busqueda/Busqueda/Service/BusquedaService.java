@@ -47,7 +47,7 @@ public class BusquedaService {
     }
 
     public List<BusquedaModelo> findByRating(String rating) {
-        return busquedaRepository.findByrating(rating);
+        return busquedaRepository.findByRating(rating);
     }
     public void delete(String rut) {
         busquedaRepository.deleteById(rut);
