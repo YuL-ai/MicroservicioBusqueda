@@ -21,8 +21,9 @@ public class BusquedaService {
     }
 
     public BusquedaModelo findByRut(String rut) {
-        return busquedaRepository.findById(rut).get();
-    }
+        return busquedaRepository.findById(rut)
+        .orElseThrow(() -> new RuntimeException("No se encontró usuario con RUT: " + rut));
+}
 
     public List<BusquedaModelo> findByNombre(String nombre) {
         return busquedaRepository.findByNombre(nombre);
